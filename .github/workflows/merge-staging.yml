@@ -14,3 +14,4 @@ jobs:
         with:
           type: now
           target_branch: staging
+          github_token: ${{ secrets.GITHUB_TOKEN }}
