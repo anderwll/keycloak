@@ -1,29 +1,17 @@
-name: Merge Develop to Staging
-
+name: Merge any release branch to uat
 on:
   push:
     branches:
-      - develop
-
+      - "develop"
 jobs:
-  merge:
+  merge-branch:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout staging branch
-        uses: actions/checkout@v3
-        with:
-          ref: staging
-
-      - name: Set up Git user
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Fetch all branches
-        run: git fetch --all
+      - uses: actions/checkout@master
 
       - name: Merge develop into staging
-        run: |
-          git merge origin/develop --no-ff --allow-unrelated-histories --commit --message "Merge branch 'develop' into 'staging'"
-          git push origin staging
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          target_branch: staging
+          github_token: ${{ secrets.ACTION_MERGE }}
