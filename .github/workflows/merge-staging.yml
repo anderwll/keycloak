@@ -25,6 +25,7 @@ jobs:
 
       - name: Merge develop into staging
         run: |
+          git branch 
           git checkout staging
           git merge develop --no-ff --allow-unrelated-histories --commit --message "Merge branch 'develop' into 'staging'"
           git push origin staging
