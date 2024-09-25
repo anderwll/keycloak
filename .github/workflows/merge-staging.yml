@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout develop branch
+      - name: Checkout staging branch
         uses: actions/checkout@v3
         with:
-          ref: develop
+          ref: staging
 
       - name: Set up Git user
         run: |
@@ -25,6 +25,5 @@ jobs:
 
       - name: Merge develop into staging
         run: |
-          git checkout staging
-          git merge develop --no-ff --allow-unrelated-histories --commit --message "Merge branch 'develop' into 'staging'"
+          git merge origin/develop --no-ff --allow-unrelated-histories --commit --message "Merge branch 'develop' into 'staging'"
           git push origin staging
