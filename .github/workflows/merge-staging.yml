@@ -25,5 +25,5 @@ jobs:
 
       - name: Merge develop into staging
         run: |
-          git merge origin develop --no-ff --commit --message "Merge branch 'develop' into 'staging'"
+          git merge origin/develop --no-ff --commit --message "Merge branch 'develop' into 'staging'"
           git push origin staging
